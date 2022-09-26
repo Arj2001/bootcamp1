@@ -26,8 +26,12 @@ public class Employee {
                     empList.add(empName);
                     break;
                 case 2:
-                    System.out.println(empList);
-                    break;
+                    if(empList.isEmpty()){
+                        System.out.println("No employee to display");
+                    }else {
+                        System.out.println(empList);
+                        break;
+                    }
                 case 3:
                     System.exit(0);
             }
