@@ -18,36 +18,23 @@ public class Calculator {
             choice = in.nextInt();
 
 
+            System.out.println("Enter the operands");
+             a = in.nextInt();
+             b = in.nextInt();
 
             switch (choice){
 
                 case 1:
-                    System.out.println("Enter the operands");
-                    a = in.nextInt();
-                    b = in.nextInt();
                     System.out.println(a+b);
                     break;
                 case 2:
-                    System.out.println("Enter the operands");
-                    a = in.nextInt();
-                    b = in.nextInt();
                     System.out.println(a-b);
                     break;
                 case 3:
-                    System.out.println("Enter the operands");
-                    a = in.nextInt();
-                    b = in.nextInt();
                     System.out.println(a*b);
                     break;
                 case 4:
-                    System.out.println("Enter the operands");
-                    a = in.nextInt();
-                    b = in.nextInt();
-                    try {
-                        System.out.println(a / b);
-                    }catch (ArithmeticException ae){
-                        System.out.println("Division by zero is not possible");
-                    }
+                    System.out.println(a/b);
                     break;
                 case 5:
                     System.exit(0);
