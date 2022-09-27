@@ -174,6 +174,8 @@ public class CoffeeShop {
                     }
                 case 3:
                     System.exit(0);
+                default:
+                    System.out.println("Invalid entry");
             }
 
     }
