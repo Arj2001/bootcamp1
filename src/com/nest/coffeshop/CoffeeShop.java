@@ -1,23 +1,34 @@
 package com.nest.coffeshop;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
+
+import static java.lang.String.valueOf;
 
 public class CoffeeShop {
     public static void main(String[] args) {
+
         int mode,choice,qty;
+        String custName;
 
         ArrayList<String>  itemName = new ArrayList<>();
         ArrayList<Integer>  qunatity = new ArrayList<>();
         ArrayList<Integer>  price = new ArrayList<>();
+
         FoodItems dineIn = new FoodItems(6, 5, 10, 8, 5, 5);
         FoodItems takeAway = new FoodItems(7, 6, 11, 9, 6, 6);
-        Scanner in = new Scanner(System.in);
 
+        HashMap<String,String> map= new HashMap<>();
+        ArrayList<String> transcationList = new ArrayList<>();
+
+        Scanner in = new Scanner(System.in);
+        outer:while (true){
             System.out.println("Select mode");
             System.out.println("1. DineIn");
             System.out.println("2. Takeaway");
-            System.out.println("3. Exit");
+            System.out.println("3. View accounts");
+            System.out.println("4. Exit");
             mode = in.nextInt();
             switch (mode){
                 case 1:
@@ -79,18 +90,29 @@ public class CoffeeShop {
                                 price.add(qty* dineIn.getVada());
                                 break;
                             case 7:
+                                int random = ((int)(Math.random()*9000)+1000);
+                                System.out.println("Enter customer name");
+                                custName = in.next();
                                 System.out.println("******************");
-                                System.out.println("Item   Qty   Price");
+                                System.out.println("Item \t Qty \t Price");
                                 int sum = 0;
                                 for (int i = 0; i <= itemName.size()-1; i++) {
-                                    System.out.println(itemName.get(i)+"  "+qunatity.get(i)+"  :"+price.get(i));
+                                    System.out.println(itemName.get(i)+" \t "+qunatity.get(i)+" \t :"+price.get(i));
                                     sum += price.get(i);
                                 }
                                 System.out.println("Total is "+sum);
-                                sum=0;
-                                System.exit(0);
+                                map.put("Name",custName);
+                                map.put("Amount",String.valueOf(sum));
+                                map.put("Invoice", String.valueOf(random));
+                                map.put("Mode", "DineIn");
+
+                                transcationList.add(String.valueOf(map));
+                                itemName.clear();
+                                price.clear();
+                                qunatity.clear();
+                                continue outer;
                             case 8:
-                                System.exit(0);
+                                continue outer;
                             default:
                                 System.out.println("Invalid Choice");
                                 break;
@@ -155,28 +177,50 @@ public class CoffeeShop {
                                 price.add(qty* takeAway.getVada());
                                 break;
                             case 7:
+                                int random = ((int)(Math.random()*9000)+1000);
+                                System.out.println("Enter customer name");
+                                custName = in.next();
                                 System.out.println("******************");
-                                System.out.println("Item   Qty   Price");
+                                System.out.println("Invoice:"+random);
+                                System.out.println("Name:"+custName);
+                                System.out.println("Item \t Qty \t Price");
                                 int sum = 0;
                                 for (int i = 0; i <= itemName.size()-1; i++) {
-                                    System.out.println(itemName.get(i)+"  "+qunatity.get(i)+"  :"+price.get(i));
+                                    System.out.println(itemName.get(i)+" \t "+qunatity.get(i)+" \t :"+price.get(i));
                                     sum += price.get(i);
                                 }
                                 System.out.println("Total is "+sum);
+                                map.put("Name",custName);
+                                map.put("Amount",String.valueOf(sum));
+                                map.put("Invoice", String.valueOf(random));
+                                map.put("Mode", "TakeAway");
+                                transcationList.add(String.valueOf(map));
+                                itemName.clear();
+                                price.clear();
+                                qunatity.clear();
                                 sum=0;
-                                System.exit(0);
+                                break;
                             case 8:
-                                System.exit(0);
+                                continue outer;
                             default:
                                 System.out.println("Invalid Choice");
                                 break;
                         }
                     }
                 case 3:
+                    System.out.println("Transaction lIst");
+                    //transcationList.forEach((n)->(System.out.println(n));
+                    for (int i = 0; i < transcationList.size(); i++) {
+                        System.out.println(transcationList.get(i));
+                    }
+                    break;
+                case 4:
                     System.exit(0);
                 default:
                     System.out.println("Invalid entry");
+                    break;
             }
+        }
 
     }
 }
