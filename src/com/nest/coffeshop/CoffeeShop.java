@@ -80,6 +80,9 @@ public class CoffeeShop {
                     System.exit(0);
                 case 8:
                     System.exit(0);
+                default:
+                    System.out.println("Invalid Choice");
+                    break;
             }
 
         }
